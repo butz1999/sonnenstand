@@ -7,6 +7,7 @@
 * Codex Plugin in VSCode installiert
 * Codex CLI executable installiert https://developers.openai.com/codex/windows/#use-codex-cli-with-wsl
 * AGENTS.md file erstellen lassen
+* Office Viewer Plugin
 # ToDo
 * AGENTS.md überprüfen, ob die Anweisungen stimmig sind
 * anweisungen.md erweitern
