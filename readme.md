@@ -1,7 +1,8 @@
 # Voraussetzungen
 
-* WSL in Windows installiert
+* WSL in Windows installiert: `wsl --install`
 * VSCode installiert
+* VSCode Remote Developement installiert
 
 # Mit Urs gemacht
 * Codex Plugin in VSCode installiert

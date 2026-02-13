@@ -1,13 +1,19 @@
 # Repository Guidelines
 
+## Project Requirements
+- The file `anweisungen.md` contains the requirements and specifications for the sw project.
+- Consider first having a discussion. DO NOT CODE ANYTHING before we discuss options and implementation strategy.
+- Architecture first, implementation second.
+- Always consider test driven development.
+
 ## Project Structure & Module Organization
 The source of truth is `anweisungen.md`. Implement as a static webpage for Home Assistant WebView embedding.
 
 Recommended layout:
-- `index.html`: entry page that works directly via `file://` and in HA WebView.
-- `assets/css/`: chart and layout styles.
-- `assets/js/`: sun position logic, chart rendering, and timed updates.
-- `assets/data/` (optional): precomputed sun-path datasets (solstices/equinox lines).
+- `www/index.html`: entry page that works directly via `file://` and in HA WebView.
+- `www/assets/css/`: chart and layout styles.
+- `www/assets/js/`: sun position logic, chart rendering, and timed updates.
+- `www/assets/data/` (optional): precomputed sun-path datasets (solstices/equinox lines).
 
 Keep solar calculations and drawing code separate from UI/config values.
 
