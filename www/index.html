@@ -8,35 +8,33 @@
 </head>
 <body>
   <main class="page">
-    <section class="panel">
-      <header class="panel-header">
-        <h1 class="panel-title">Sonnenstandsdiagramm</h1>
-        <button id="test-toggle" class="test-toggle" aria-expanded="false" aria-controls="test-panel" title="Testbereich umschalten">⚙</button>
-        <p id="datenzeile-text" class="datenzeile-text"></p>
-      </header>
-      <section id="test-panel" class="test-panel" hidden aria-label="Testbereich">
-        <label class="control-group" for="time-slider">
-          <span class="control-label">Tageszeit Simulation</span>
-          <input id="time-slider" type="range" min="0" max="1439" step="1">
-          <span id="time-slider-value" class="control-value">12:00</span>
-        </label>
-        <label class="control-group" for="day-slider">
-          <span class="control-label">Tag im Jahr</span>
-          <input id="day-slider" type="range" min="1" max="365" step="1">
-          <span id="day-slider-value" class="control-value">1</span>
-        </label>
-        <label class="control-group" for="location-select">
-          <span class="control-label">Standort Simulation</span>
-          <select id="location-select"></select>
-        </label>
-      </section>
-      <div id="chart-frame" class="chart-frame">
-        <canvas id="sun-chart" aria-label="Sonnenstandsdiagramm"></canvas>
-      </div>
-      <section id="legend-panel" class="legend-panel" aria-label="Legende">
-        <h2>Legende</h2>
-        <ul id="legend-list" class="legend-list"></ul>
-      </section>
+    <header class="panel-header">
+      <h1 class="panel-title">Sonnenstandsdiagramm</h1>
+      <button id="test-toggle" class="test-toggle" aria-expanded="false" aria-controls="test-panel" title="Testbereich umschalten">⚙</button>
+      <p id="datenzeile-text" class="datenzeile-text"></p>
+    </header>
+    <section id="test-panel" class="test-panel" hidden aria-label="Testbereich">
+      <label class="control-group" for="time-slider">
+        <span class="control-label">Tageszeit Simulation</span>
+        <input id="time-slider" type="range" min="0" max="1439" step="1">
+        <span id="time-slider-value" class="control-value">12:00</span>
+      </label>
+      <label class="control-group" for="day-slider">
+        <span class="control-label">Tag im Jahr</span>
+        <input id="day-slider" type="range" min="1" max="365" step="1">
+        <span id="day-slider-value" class="control-value">1</span>
+      </label>
+      <label class="control-group" for="location-select">
+        <span class="control-label">Standort Simulation</span>
+        <select id="location-select"></select>
+      </label>
+    </section>
+    <section id="chart-frame" class="chart-frame" aria-label="Grafikbereich">
+      <canvas id="sun-chart" aria-label="Sonnenstandsdiagramm"></canvas>
+    </section>
+    <section id="legend-panel" class="legend-panel" aria-label="Legende">
+      <h2>Legende</h2>
+      <ul id="legend-list" class="legend-list"></ul>
     </section>
   </main>
 

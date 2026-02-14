@@ -63,7 +63,9 @@
     }
 
     var breakpoint = typeof cfg.mobileBreakpointPx === "number" ? cfg.mobileBreakpointPx : 760;
-    return window.innerWidth <= breakpoint ? "mobile" : "desktop";
+    var isNarrowViewport = window.innerWidth <= breakpoint;
+    var isLikelyMobileDevice = window.matchMedia && window.matchMedia("(pointer: coarse)").matches && window.innerWidth <= 1024;
+    return (isNarrowViewport || isLikelyMobileDevice) ? "mobile" : "desktop";
   }
 
   function resolveThemeMode() {
@@ -383,7 +385,9 @@
   }
 
   function applyChartAspectRatio() {
-    var ratio = config.chart.aspectRatioWidth + " / " + config.chart.aspectRatioHeight;
+    var viewportRatio = window.innerWidth / Math.max(1, window.innerHeight);
+    var clampedRatio = Math.max(1, Math.min(2, viewportRatio));
+    var ratio = clampedRatio + " / 1";
     chartFrame.style.setProperty("--chart-aspect-ratio", ratio);
   }
 
