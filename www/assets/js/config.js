@@ -1,5 +1,14 @@
 (function () {
   window.APP_CONFIG = {
+    layout: {
+      defaultMode: "auto",
+      mobileBreakpointPx: 760,
+      allowUrlOverride: true
+    },
+    theme: {
+      defaultMode: "auto",
+      allowUrlOverride: true
+    },
     locations: [
       { label: "Hombrechtikon", locationString: "47.251738, 8.765695", utcOffsetMinutes: 60 },
       { label: "Zürich", locationString: "47.376887, 8.541694", utcOffsetMinutes: 60 },
@@ -52,6 +61,46 @@
       solarEquinox: { color: "#3178c6", lineWidth: 2.0 },
       otherData: { color: "#888888", lineWidth: 1.0 },
       decemberSolstice: { color: "#2e8b57", lineWidth: 2.0 }
+    },
+    themeStyles: {
+      light: {
+        colors: {
+          background: "#ffffff",
+          frame: "#d7dde6",
+          axis: "#2c3e57",
+          majorGrid: "#b6c2d3",
+          minorGrid: "#e2e8f0",
+          text: "#21354d",
+          currentSun: "#f25f35",
+          currentSunBelowHorizon: "#7f8ca3",
+          hourLine: "#8c97a8"
+        },
+        curveStyles: {
+          juneSolstice: { color: "#d1495b", lineWidth: 2.0 },
+          solarEquinox: { color: "#3178c6", lineWidth: 2.0 },
+          otherData: { color: "#888888", lineWidth: 1.0 },
+          decemberSolstice: { color: "#2e8b57", lineWidth: 2.0 }
+        }
+      },
+      dark: {
+        colors: {
+          background: "#101b2b",
+          frame: "#2a3952",
+          axis: "#c6d3e6",
+          majorGrid: "#3a4a63",
+          minorGrid: "#26344a",
+          text: "#dce6f4",
+          currentSun: "#ffad42",
+          currentSunBelowHorizon: "#8b9bb5",
+          hourLine: "#6f7f98"
+        },
+        curveStyles: {
+          juneSolstice: { color: "#ff7d8f", lineWidth: 2.0 },
+          solarEquinox: { color: "#74b5ff", lineWidth: 2.0 },
+          otherData: { color: "#91a0b7", lineWidth: 1.0 },
+          decemberSolstice: { color: "#56d091", lineWidth: 2.0 }
+        }
+      }
     },
     lineWidths: {
       axis: 1.5,

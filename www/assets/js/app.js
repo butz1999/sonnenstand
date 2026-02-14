@@ -5,7 +5,7 @@
 
   var canvas = document.getElementById("sun-chart");
   var chartFrame = document.getElementById("chart-frame");
-  var metaText = document.getElementById("meta-text");
+  var datenzeileText = document.getElementById("datenzeile-text");
   var testToggle = document.getElementById("test-toggle");
   var testPanel = document.getElementById("test-panel");
   var timeSlider = document.getElementById("time-slider");
@@ -14,6 +14,8 @@
   var daySliderValue = document.getElementById("day-slider-value");
   var locationSelect = document.getElementById("location-select");
   var legendList = document.getElementById("legend-list");
+  var legendPanel = document.getElementById("legend-panel");
+  var urlParams = new URLSearchParams(window.location.search);
 
   var locationCache = {};
   var seasonCache = {};
@@ -33,6 +35,84 @@
   var defaultLocation = (config.locations && config.locations.length > 0)
     ? config.locations[0]
     : { label: "Standard Standort", locationString: "47.251738, 8.765695", utcOffsetMinutes: -new Date().getTimezoneOffset() };
+
+  function parseCombinedModeTheme(rawModeValue) {
+    var value = (rawModeValue || "").toLowerCase().trim();
+    if (!value) {
+      return { layoutMode: "", themeMode: "" };
+    }
+    var parts = value.split("-");
+    return {
+      layoutMode: parts[0] || "",
+      themeMode: parts[1] || ""
+    };
+  }
+
+  function resolveLayoutMode() {
+    var cfg = config.layout || {};
+    var allowed = { desktop: true, mobile: true };
+    var combined = parseCombinedModeTheme(urlParams.get("mode"));
+    var queryMode = combined.layoutMode;
+    if (cfg.allowUrlOverride && allowed[queryMode]) {
+      return queryMode;
+    }
+
+    var defaultMode = (cfg.defaultMode || "auto").toLowerCase();
+    if (allowed[defaultMode]) {
+      return defaultMode;
+    }
+
+    var breakpoint = typeof cfg.mobileBreakpointPx === "number" ? cfg.mobileBreakpointPx : 760;
+    return window.innerWidth <= breakpoint ? "mobile" : "desktop";
+  }
+
+  function resolveThemeMode() {
+    var cfg = config.theme || {};
+    var allowed = { light: true, dark: true };
+    var combined = parseCombinedModeTheme(urlParams.get("mode"));
+    var queryTheme = combined.themeMode || (urlParams.get("theme") || "").toLowerCase();
+    if (cfg.allowUrlOverride && allowed[queryTheme]) {
+      return queryTheme;
+    }
+
+    var defaultMode = (cfg.defaultMode || "auto").toLowerCase();
+    if (allowed[defaultMode]) {
+      return defaultMode;
+    }
+
+    if (window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches) {
+      return "dark";
+    }
+    return "light";
+  }
+
+  function applyThemeStyles(themeMode) {
+    var themeStyles = config.themeStyles || {};
+    var selected = themeStyles[themeMode] || themeStyles.light;
+    if (!selected) {
+      return;
+    }
+
+    if (selected.colors) {
+      config.colors = Object.assign({}, selected.colors);
+    }
+
+    if (selected.curveStyles) {
+      var nextCurveStyles = {};
+      Object.keys(selected.curveStyles).forEach(function (key) {
+        nextCurveStyles[key] = Object.assign({}, selected.curveStyles[key]);
+      });
+      config.curveStyles = nextCurveStyles;
+    }
+  }
+
+  function applyDisplayModes() {
+    var layoutMode = resolveLayoutMode();
+    var themeMode = resolveThemeMode();
+    document.body.dataset.layoutMode = layoutMode;
+    document.body.dataset.theme = themeMode;
+    applyThemeStyles(themeMode);
+  }
 
   function scheduleRender() {
     if (scheduledRenderFrameId !== null) {
@@ -102,6 +182,7 @@
   function setTestModeEnabled(enabled) {
     state.isTestMode = enabled;
     testPanel.hidden = !enabled;
+    legendPanel.hidden = enabled;
     testToggle.setAttribute("aria-expanded", String(enabled));
   }
 
@@ -195,18 +276,12 @@
     });
     renderLegend(seasonPaths);
 
-    metaText.textContent =
+    datenzeileText.textContent =
       "Standort " +
       activeLocation.label +
       " (" +
       activeLocation.locationString +
       ")" +
-      " | Modus " +
-      (simulationMode ? "Simulation" : "Live") +
-      " | Zeit " +
-      (simulationMode ? (String(state.simulatedDayOfYear) + " / " + formatTimeFromMinutes(state.simulatedMinutes)) : formatLiveDateTime(activeDate)) +
-      " | Tag " +
-      (simulationMode ? state.simulatedDayOfYear : dayOfYearFromDate(activeDate)) +
       " | Azimut " +
       currentSun.azimuth.toFixed(1) +
       "° | Elevation " +
@@ -382,6 +457,7 @@
   }
 
   function start() {
+    applyDisplayModes();
     applyChartAspectRatio();
     populateLocationSelect();
     var now = new Date();
@@ -399,9 +475,25 @@
     canvas.style.visibility = "hidden";
     setupInitialRender();
     startMinuteAlignedUpdates();
+
+    if (window.matchMedia) {
+      var darkModeMql = window.matchMedia("(prefers-color-scheme: dark)");
+      if (typeof darkModeMql.addEventListener === "function") {
+        darkModeMql.addEventListener("change", function () {
+          applyDisplayModes();
+          scheduleRender();
+        });
+      } else if (typeof darkModeMql.addListener === "function") {
+        darkModeMql.addListener(function () {
+          applyDisplayModes();
+          scheduleRender();
+        });
+      }
+    }
   }
 
   window.addEventListener("resize", function () {
+    applyDisplayModes();
     if (resizeDebounceTimeoutId !== null) {
       clearTimeout(resizeDebounceTimeoutId);
     }

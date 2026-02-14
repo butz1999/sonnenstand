@@ -22,6 +22,7 @@ Ich möchte eine statische HTML Seite mit einem Sonnenstandsdiagramm generieren,
   * Titelbereich
     * Titel linksbündig
     * Zahnrad Symbol rechtsbündig
+  * Datenzeile
   * Testbereich
   * Grafik
   * Legende
