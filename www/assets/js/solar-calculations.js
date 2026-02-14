@@ -63,10 +63,13 @@
 
   function createSeasonDates(year) {
     return [
-      { label: "Maerz-Tagundnachtgleiche", colorKey: "marchEquinox", date: new Date(Date.UTC(year, 2, 20, 12, 0, 0)) },
-      { label: "Juni-Sonnenwende", colorKey: "juneSolstice", date: new Date(Date.UTC(year, 5, 21, 12, 0, 0)) },
-      { label: "September-Tagundnachtgleiche", colorKey: "septemberEquinox", date: new Date(Date.UTC(year, 8, 22, 12, 0, 0)) },
-      { label: "Dezember-Sonnenwende", colorKey: "decemberSolstice", date: new Date(Date.UTC(year, 11, 21, 12, 0, 0)) }
+      { label: "Dez", colorKey: "decemberSolstice", date: new Date(Date.UTC(year, 11, 21, 12, 0, 0)) },
+      { label: "Jan/Nov", colorKey: "otherData", date: new Date(Date.UTC(year, 0, 21, 12, 0, 0)) },
+      { label: "Feb/Okt", colorKey: "otherData", date: new Date(Date.UTC(year, 1, 21, 12, 0, 0)) },
+      { label: "März/Sep", colorKey: "solarEquinox", date: new Date(Date.UTC(year, 2, 21, 12, 0, 0)) },
+      { label: "Apr/Aug", colorKey: "otherData", date: new Date(Date.UTC(year, 3, 21, 12, 0, 0)) },
+      { label: "Mai/Juli", colorKey: "otherData", date: new Date(Date.UTC(year, 4, 21, 12, 0, 0)) },
+      { label: "Juni", colorKey: "juneSolstice", date: new Date(Date.UTC(year, 5, 21, 12, 0, 0)) }
     ];
   }
 

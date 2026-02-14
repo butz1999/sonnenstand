@@ -1,4 +1,13 @@
 (function () {
+  function getCurveStyle(cfg, colorKey) {
+    var styles = cfg.curveStyles || {};
+    var style = styles[colorKey] || {};
+    return {
+      color: style.color || cfg.colors[colorKey] || "#888888",
+      lineWidth: typeof style.lineWidth === "number" ? style.lineWidth : cfg.lineWidths.path
+    };
+  }
+
   function setupCanvas(canvas) {
     var rect = canvas.getBoundingClientRect();
     var dpr = Math.max(1, window.devicePixelRatio || 1);
@@ -234,7 +243,8 @@
     drawAxes(ctx, scales, cfg, bounds);
 
     payload.seasonPaths.forEach(function (season) {
-      drawPath(ctx, scales, season.points, cfg.colors[season.colorKey], cfg.lineWidths.path, cfg);
+      var curveStyle = getCurveStyle(cfg, season.colorKey);
+      drawPath(ctx, scales, season.points, curveStyle.color, curveStyle.lineWidth, cfg);
     });
 
     drawCurrentSun(ctx, scales, cfg, bounds, payload.currentSun);

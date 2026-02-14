@@ -45,11 +45,13 @@
       text: "#21354d",
       currentSun: "#f25f35",
       currentSunBelowHorizon: "#7f8ca3",
-      juneSolstice: "#d1495b",
-      marchEquinox: "#3178c6",
-      septemberEquinox: "#3178c6",
-      decemberSolstice: "#2e8b57",
       hourLine: "#8c97a8"
+    },
+    curveStyles: {
+      juneSolstice: { color: "#d1495b", lineWidth: 2.0 },
+      solarEquinox: { color: "#3178c6", lineWidth: 2.0 },
+      otherData: { color: "#888888", lineWidth: 1.0 },
+      decemberSolstice: { color: "#2e8b57", lineWidth: 2.0 }
     },
     lineWidths: {
       axis: 1.5,

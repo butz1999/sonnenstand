@@ -140,6 +140,15 @@
     return -new Date().getTimezoneOffset();
   }
 
+  function getCurveStyle(colorKey) {
+    var styles = config.curveStyles || {};
+    var style = styles[colorKey] || {};
+    return {
+      color: style.color || config.colors[colorKey] || "#888888",
+      lineWidth: typeof style.lineWidth === "number" ? style.lineWidth : config.lineWidths.path
+    };
+  }
+
   function renderLegend(seasonPaths) {
     legendList.innerHTML = "";
     seasonPaths.forEach(function (season) {
@@ -148,7 +157,9 @@
 
       var swatch = document.createElement("span");
       swatch.className = "legend-swatch";
-      swatch.style.backgroundColor = config.colors[season.colorKey];
+      var curveStyle = getCurveStyle(season.colorKey);
+      swatch.style.backgroundColor = curveStyle.color;
+      swatch.style.height = String(curveStyle.lineWidth) + "px";
 
       var label = document.createElement("span");
       label.textContent = season.label;
@@ -166,7 +177,7 @@
     sunSwatch.style.backgroundColor = config.colors.currentSun;
 
     var sunLabel = document.createElement("span");
-    sunLabel.textContent = "Aktuelle Sonne";
+    sunLabel.textContent = "Sonne";
 
     sunItem.appendChild(sunSwatch);
     sunItem.appendChild(sunLabel);
