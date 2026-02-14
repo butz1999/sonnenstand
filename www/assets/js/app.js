@@ -30,6 +30,10 @@
     simulatedDayOfYear: 1
   };
 
+  var defaultLocation = (config.locations && config.locations.length > 0)
+    ? config.locations[0]
+    : { label: "Standard Standort", locationString: "47.251738, 8.765695", utcOffsetMinutes: -new Date().getTimezoneOffset() };
+
   function scheduleRender() {
     if (scheduledRenderFrameId !== null) {
       cancelAnimationFrame(scheduledRenderFrameId);
@@ -103,35 +107,28 @@
 
   function populateLocationSelect() {
     locationSelect.innerHTML = "";
-    config.testLocations.forEach(function (entry) {
+    config.locations.forEach(function (entry) {
       var option = document.createElement("option");
       option.value = entry.locationString;
       option.textContent = entry.label;
       locationSelect.appendChild(option);
     });
-    locationSelect.value = config.locationString;
+    locationSelect.value = defaultLocation.locationString;
   }
 
   function getSelectedLocationEntry() {
-    var selectedString = locationSelect.value || config.locationString;
-    for (var i = 0; i < config.testLocations.length; i += 1) {
-      if (config.testLocations[i].locationString === selectedString) {
-        return config.testLocations[i];
+    var selectedString = locationSelect.value || defaultLocation.locationString;
+    for (var i = 0; i < config.locations.length; i += 1) {
+      if (config.locations[i].locationString === selectedString) {
+        return config.locations[i];
       }
     }
-    return {
-      label: "Standard Standort",
-      locationString: config.locationString
-    };
+    return defaultLocation;
   }
 
   function getActiveLocationEntry() {
     if (!state.isTestMode) {
-      return {
-        label: "Live Standort",
-        locationString: config.locationString,
-        utcOffsetMinutes: -new Date().getTimezoneOffset()
-      };
+      return defaultLocation;
     }
     return getSelectedLocationEntry();
   }
