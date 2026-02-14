@@ -206,7 +206,7 @@ body[data-theme="dark"] {
   margin: 0;
   padding: 0;
   display: flex;
-  gap: 0;
+  gap: 8px;
   flex-wrap: wrap;
   justify-content: center;
 }
@@ -214,8 +214,8 @@ body[data-theme="dark"] {
 .legend-item {
   display: inline-flex;
   align-items: center;
-  gap: 0;
-  padding: 0 8px;
+  gap: 4px;
+  padding: 8px;
   font-size: 0.86rem;
 }
 
@@ -298,11 +298,12 @@ body[data-layout-mode="mobile"] .legend-panel h2 {
 }
 
 body[data-layout-mode="mobile"] .legend-list {
-  gap: 0;
+  gap: 6px;
 }
 
 body[data-layout-mode="mobile"] .legend-item {
-  padding: 0 6px;
+  gap: 3px;
+  padding: 6px;
   font-size: 0.74rem;
   line-height: 1;
 }
@@ -310,5 +311,5 @@ body[data-layout-mode="mobile"] .legend-item {
 body[data-layout-mode="mobile"] .chart-frame {
   width: min(100%, 680px);
   height: auto;
-  aspect-ratio: 1 / 1;
+  aspect-ratio: 3 / 2;
 }
