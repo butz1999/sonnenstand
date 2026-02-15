@@ -13,6 +13,8 @@
   var daySlider = document.getElementById("day-slider");
   var daySliderValue = document.getElementById("day-slider-value");
   var locationSelect = document.getElementById("location-select");
+  var layoutToggleBtn = document.getElementById("layout-toggle-btn");
+  var themeToggleBtn = document.getElementById("theme-toggle-btn");
   var legendList = document.getElementById("legend-list");
   var legendPanel = document.getElementById("legend-panel");
   var urlParams = new URLSearchParams(window.location.search);
@@ -29,7 +31,9 @@
   var state = {
     isTestMode: false,
     simulatedMinutes: 12 * 60,
-    simulatedDayOfYear: 1
+    simulatedDayOfYear: 1,
+    layoutOverride: null,
+    themeOverride: null
   };
 
   var defaultLocation = (config.locations && config.locations.length > 0)
@@ -109,11 +113,13 @@
   }
 
   function applyDisplayModes() {
-    var layoutMode = resolveLayoutMode();
-    var themeMode = resolveThemeMode();
+    var layoutMode = state.layoutOverride || resolveLayoutMode();
+    var themeMode = state.themeOverride || resolveThemeMode();
     document.body.dataset.layoutMode = layoutMode;
     document.body.dataset.theme = themeMode;
     applyThemeStyles(themeMode);
+    layoutToggleBtn.textContent = layoutMode === "desktop" ? "Mobile" : "Desktop";
+    themeToggleBtn.textContent = themeMode === "dark" ? "Light" : "Dark";
   }
 
   function scheduleRender() {
@@ -384,6 +390,21 @@
     }
   }
 
+  function onLayoutToggleClick() {
+    var currentLayout = document.body.dataset.layoutMode || resolveLayoutMode();
+    state.layoutOverride = currentLayout === "desktop" ? "mobile" : "desktop";
+    applyDisplayModes();
+    applyChartAspectRatio();
+    scheduleRender();
+  }
+
+  function onThemeToggleClick() {
+    var currentTheme = document.body.dataset.theme || resolveThemeMode();
+    state.themeOverride = currentTheme === "dark" ? "light" : "dark";
+    applyDisplayModes();
+    scheduleRender();
+  }
+
   function applyChartAspectRatio() {
     var viewportRatio = window.innerWidth / Math.max(1, window.innerHeight);
     var clampedRatio = Math.max(1, Math.min(2, viewportRatio));
@@ -476,6 +497,8 @@
     timeSlider.addEventListener("input", onSliderInput);
     daySlider.addEventListener("input", onDaySliderInput);
     locationSelect.addEventListener("change", onLocationChange);
+    layoutToggleBtn.addEventListener("click", onLayoutToggleClick);
+    themeToggleBtn.addEventListener("click", onThemeToggleClick);
     canvas.style.visibility = "hidden";
     setupInitialRender();
     startMinuteAlignedUpdates();

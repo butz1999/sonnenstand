@@ -24,10 +24,15 @@
         <input id="day-slider" type="range" min="1" max="365" step="1">
         <span id="day-slider-value" class="control-value">1</span>
       </label>
-      <label class="control-group" for="location-select">
+      <div class="control-group">
         <span class="control-label">Standort Simulation</span>
-        <select id="location-select"></select>
-      </label>
+        <div class="location-controls-row">
+          <select id="location-select"></select>
+          <button id="layout-toggle-btn" type="button" class="mode-toggle-btn">Desktop</button>
+          <button id="theme-toggle-btn" type="button" class="mode-toggle-btn">Light</button>
+        </div>
+        <span class="control-value control-value-empty" aria-hidden="true"></span>
+      </div>
     </section>
     <section id="chart-frame" class="chart-frame" aria-label="Grafikbereich">
       <canvas id="sun-chart" aria-label="Sonnenstandsdiagramm"></canvas>
