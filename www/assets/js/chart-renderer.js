@@ -236,8 +236,8 @@
     var bounds = deriveChartBounds(cfg, payload);
     var scales = buildScales(width, height, cfg, bounds);
 
-    ctx.fillStyle = cfg.colors.background;
-    ctx.fillRect(0, 0, width, height);
+    // Keep the canvas transparent between renders.
+    ctx.clearRect(0, 0, width, height);
 
     drawGrid(ctx, scales, cfg, bounds);
     drawAxes(ctx, scales, cfg, bounds);
