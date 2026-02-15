@@ -25,7 +25,7 @@ body {
 body[data-theme="light"] {
   --body-bg: transparent;
   --main-bg: transparent;
-  --section-bg: #dddddd;
+  --section-bg: #f8f8f8;
   --body-border: transparent;
   --main-border: transparent;
   --section-border: #cccccc;
@@ -47,7 +47,7 @@ body[data-theme="dark"] {
 .page {
   width: min(1200px, 100%);
   margin: 0 auto;
-  height: 100vh;
+  height: 100%;
   display: grid;
   place-items: stretch;
   background: var(--main-bg);
@@ -236,7 +236,7 @@ body[data-theme="dark"] {
 }
 
 body[data-layout-mode="desktop"] .page {
-  height: 100vh;
+  height: 100%;
   padding: 10px;
   gap: 8px;
 }
@@ -249,7 +249,7 @@ body[data-layout-mode="desktop"] .page > section {
 
 body[data-layout-mode="mobile"] .page {
   height: auto;
-  min-height: 100vh;
+  min-height: 100%;
   padding: 8px;
   grid-template-rows: auto auto auto auto;
   gap: 6px;
