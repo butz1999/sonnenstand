@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   viewBox="0 0 16 16"
+   fill="#000000"
+   aria-hidden="true"
+   id="Sun--Streamline-Heroicons"
+   height="16"
+   width="16"
+   version="1.1"
+   sodipodi:docname="Sun--Streamline-Heroicons.svg"
+   inkscape:version="1.4 (86a8ad7, 2024-10-11)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs1" />
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:zoom="49.6875"
+     inkscape:cx="8"
+     inkscape:cy="8"
+     inkscape:window-width="1920"
+     inkscape:window-height="991"
+     inkscape:window-x="-9"
+     inkscape:window-y="-9"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="Sun--Streamline-Heroicons" />
+  <desc
+     id="desc1">
+    Sun Streamline Icon: https://streamlinehq.com
+  </desc>
+  <path
+     d="M8 1.5a0.5 0.5 0 0 1 0.5 0.5v1.5a0.5 0.5 0 0 1 -1 0V2a0.5 0.5 0 0 1 0.5 -0.5ZM5 8a3 3 0 1 1 6 0 3 3 0 0 1 -6 0Zm7.596 -3.889333333333333a0.5 0.5 0 0 0 -0.7066666666666667 -0.7066666666666667l-1.0606666666666666 1.06a0.5 0.5 0 1 0 0.7066666666666667 0.7073333333333333l1.0606666666666666 -1.06ZM14.5 8a0.5 0.5 0 0 1 -0.5 0.5h-1.5a0.5 0.5 0 0 1 0 -1H14a0.5 0.5 0 0 1 0.5 0.5Zm-2.6106666666666665 4.596a0.5 0.5 0 0 0 0.7066666666666667 -0.7066666666666667l-1.06 -1.0606666666666666a0.5 0.5 0 1 0 -0.7073333333333333 0.7066666666666667l1.06 1.0606666666666666ZM8 12a0.5 0.5 0 0 1 0.5 0.5V14a0.5 0.5 0 0 1 -1 0v-1.5A0.5 0.5 0 0 1 8 12Zm-2.828 -0.4646666666666666a0.5 0.5 0 0 0 -0.7073333333333333 -0.7066666666666667l-1.0606666666666666 1.06a0.5 0.5 0 0 0 0.7066666666666667 0.7073333333333333l1.0606666666666666 -1.06ZM4 8a0.5 0.5 0 0 1 -0.5 0.5H2a0.5 0.5 0 0 1 0 -1h1.5A0.5 0.5 0 0 1 4 8Zm0.4646666666666666 -2.828666666666667a0.5 0.5 0 0 0 0.7066666666666667 -0.7066666666666667l-1.06 -1.0606666666666666a0.5 0.5 0 0 0 -0.7073333333333333 0.7066666666666667l1.06 1.0606666666666666Z"
+     stroke-width="0.6667"
+     id="path1"
+     style="fill:#03a9f4;fill-opacity:1" />
+</svg>
